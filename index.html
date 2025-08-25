@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Food Munch — Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* small custom tweaks */
+      html {
+        scroll-behavior: smooth;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(6px);
+      }
+      .nav-active {
+        color: #c3a701 !important;
+        font-weight: 700;
+      }
+      /* cart slide animation handled by transform utility classes in markup */
+    </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body class="antialiased text-slate-800 bg-slate-50">
+    <!-- NAVBAR -->
+    <header data-aos="fade-in" data-aos-delay="300"
+      class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b shadow-md transition"
+    >
+      <div
+        class="max-w-6xl mx-auto flex items-center justify-between p-4 md:p-6"
+      >
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/857/857681.png"
+            alt="logo"
+            class="w-12 h-12 transform transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
+          />
+          <span
+            class="font-extrabold text-lg md:text-2xl text-slate-800 tracking-wide group-hover:text-amber-600 transition-colors"
+            >SpiceHub</span
+          >
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6 font-medium">
+          <a
+            class="navlink text-slate-700 hover:text-amber-600 transition-colors relative group"
+            href="#whychooseus"
+          >
+            Why Choose
+            <span
+              class="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            class="navlink text-slate-700 hover:text-amber-600 transition-colors relative group"
+            href="#explore"
+          >
+            Menu
+            <span
+              class="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            class="navlink text-slate-700 hover:text-amber-600 transition-colors relative group"
+            href="#freshhealthy"
+          >
+            Fresh
+            <span
+              class="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            class="navlink text-slate-700 hover:text-amber-600 transition-colors relative group"
+            href="#payment"
+          >
+            Payment
+            <span
+              class="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            class="navlink text-slate-700 hover:text-amber-600 transition-colors relative group"
+            href="#redeem"
+          >
+            Redeem
+            <span
+              class="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-3">
+          <!-- Cart -->
+          <button id="cartToggle" aria-label="Open cart" class="relative group">
+            <svg
+              class="w-7 h-7 text-amber-600 transform transition-transform group-hover:scale-110"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m5-9v9m4-9v9m4-9l2 9"
+              />
+            </svg>
+            <span
+              id="cartCounter"
+              class="absolute -top-2 -right-3 bg-red-600 text-white text-xs px-1 rounded-full shadow-md"
+              >0</span
+            >
+          </button>
+
+          <!-- Mobile menu button -->
+          <button
+            id="mobileMenuBtn"
+            class="md:hidden p-2 rounded-md hover:bg-amber-50 border border-slate-200 transition"
+          >
+            <svg
+              class="w-6 h-6 text-slate-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile nav -->
+      <div
+        id="mobileMenu"
+        class="md:hidden hidden border-t bg-white/90 backdrop-blur-md shadow-md"
+      >
+        <div class="flex flex-col gap-2 p-4 max-w-3xl mx-auto">
+          <a
+            class="navlink py-2 hover:text-amber-600 transition-colors"
+            href="#whychooseus"
+            >Why Choose</a
+          >
+          <a
+            class="navlink py-2 hover:text-amber-600 transition-colors"
+            href="#explore"
+            >Menu</a
+          >
+          <a
+            class="navlink py-2 hover:text-amber-600 transition-colors"
+            href="#freshhealthy"
+            >Fresh</a
+          >
+          <a
+            class="navlink py-2 hover:text-amber-600 transition-colors"
+            href="#payment"
+            >Payment</a
+          >
+          <a
+            class="navlink py-2 hover:text-amber-600 transition-colors"
+            href="#redeem"
+            >Redeem</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section data-aos="fade-in" data-aos-delay="300" id="home" class="relative h-screen">
+      <img
+        src="https://ik.imagekit.io/8maos45zi/Food%20store/image.png?updatedAt=1756125342662"
+        alt="hero"
+        class="opacity-[90%] absolute inset-0 w-full h-full object-cover"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"
+      ></div>
+
+      <div
+        class="relative z-10 max-w-6xl mx-auto h-full flex items-center px-6"
+      >
+        <div data-aos="fade-left" data-aos-delay="300" class="w-full md:w-2/3 text-center md:text-left text-white">
+          <h1 class="text-4xl md:text-5xl font-extrabold drop-shadow-lg">
+            Get Delicious Food Anytime
+          </h1>
+          <p class="mt-4 text-lg md:text-xl text-slate-200">
+            Eat smart, eat healthy — hand-crafted meals delivered fast.
+          </p>
+          <div class="mt-6 flex justify-center md:justify-start gap-3">
+            <a
+              href="#explore"
+              class="inline-block px-5 py-3 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-medium shadow"
+              >Explore Menu</a
+            >
+            <button
+              id="heroOrder"
+              class="inline-block px-5 py-3 rounded-lg border border-amber-500 text-amber-500 hover:bg-amber-50"
+            >
+              Order Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE -->
+    <section id="whychooseus" data-aos="fade-up" data-aos-delay="300" class="py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-8 text-center">
+          <h2 class="text-3xl font-bold text-slate-800">Why Choose Us?</h2>
+          <p class="text-slate-600 mt-2">
+            Fresh ingredients, careful packaging and fast delivery — every time.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div data-aos="zoom-in"
+            data-aos-delay="200"
+            class="p-6 bg-white rounded-2xl shadow transform hover:-translate-y-1 transition"
+          >
+            <img
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/ff.png?updatedAt=1756142748098"
+              class="w-20 h-30 mx-auto"
+              alt=""
+            />
+            <h3 class="text-xl font-semibold text-slate-800 mt-4 text-center">
+              Premium Quality
+            </h3>
+            <p class="text-slate-500 mt-2 text-center">
+              Handpicked ingredients and chef-approved recipes.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-2xl shadow transform hover:-translate-y-1 transition"
+          >
+            <img
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/delivery_no_bg.png?updatedAt=1756142747339"
+              class="w-20 h-30 mx-auto"
+              alt=""
+            />
+            <h3 class="text-xl font-semibold text-slate-800 mt-4 text-center">
+              Fast Delivery
+            </h3>
+            <p class="text-slate-500 mt-2 text-center">
+              Real-time tracking & careful handling to your door.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-2xl shadow transform hover:-translate-y-1 transition"
+          >
+            <img
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/leaf_no_bg.png?updatedAt=1756142746665"
+              class="w-20 h-30 mx-auto"
+              alt=""
+            />
+            <h3 class="text-xl font-semibold text-slate-800 mt-4 text-center">
+              All Natural
+            </h3>
+            <p class="text-slate-500 mt-2 text-center">
+              Organic and fresh produce in every meal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU / EXPLORE -->
+    <section
+      id="explore"
+      class="py-16 bg-gradient-to-b from-transparent to-slate-50"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-3xl font-bold text-slate-800">Explore Our Menu</h2>
+          <p class="text-slate-600">Tap items to add them to your cart</p>
+        </div>
+
+        <div
+          id="menuGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <!-- Card 1 -->
+          <!-- Chicken Biryani -->
+          <article data-aos="zoom-in"
+            data-aos-delay="100"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="2"
+            data-name="Chicken Biryani"
+            data-price="12.99"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/chicken?updatedAt=1756143359034"
+              alt="Chicken Biryani"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Chicken Biryani</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Aromatic rice cooked with chicken and spices.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$160</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Malabar Parotta -->
+          <article data-aos="zoom-in"
+            data-aos-delay="200"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="3"
+            data-name="Malabar Parotta"
+            data-price="3.99"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/image.png?updatedAt=1756143186400"
+              alt="Malabar Parotta"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Malabar Parotta</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Flaky layered flatbread, crispy and soft.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$90</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Shawarma -->
+          <article data-aos="zoom-in"
+            data-aos-delay="300"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="4"
+            data-name="Shawarma"
+            data-price="6.99"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/shawarma.png?updatedAt=1756143185898"
+              alt="Shawarma"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Shawarma</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Juicy wrap with spiced chicken and veggies.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$150</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Zinger Burger -->
+          <article data-aos="zoom-in"
+            data-aos-delay="400"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="5"
+            data-name="Zinger Burger"
+            data-price="7.99"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/zinger?updatedAt=1756143185906"
+              alt="Zinger Burger"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Zinger Burger</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Crispy chicken burger with mayo & lettuce.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$110</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mutton Biryani -->
+          <article data-aos="zoom-in"
+            data-aos-delay="500"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="6"
+            data-name="Mutton Biryani"
+            data-price="14.99"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/mutton?updatedAt=1756143185702"
+              alt="Mutton Biryani"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Mutton Biryani</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Fragrant rice with juicy mutton and spices.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$300</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Kothu Parotta -->
+          <article data-aos="zoom-in"
+            data-aos-delay="600"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="7"
+            data-name="Kothu Parotta"
+            data-price="8.49"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/kothu?updatedAt=1756143359212"
+              alt="Kothu Parotta"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Kothu Parotta</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Shredded parotta tossed with curry & egg.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$70</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dosa -->
+          <article data-aos="zoom-in"
+            data-aos-delay="700"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="8"
+            data-name="Dosa"
+            data-price="4.99"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/dosa?updatedAt=1756144081226"
+              alt="Dosa"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Dosa</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Crispy dosa with chutney and sambar.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$40</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mutta Dosa -->
+          <article data-aos="zoom-in"
+            data-aos-delay="800"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="9"
+            data-name="Mutta Dosa"
+            data-price="5.49"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/eggdosa?updatedAt=1756144081253"
+              alt="Mutta Dosa"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Mutta Dosa</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Dosa layered with egg & pepper.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$60</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Chapathi -->
+          <article data-aos="zoom-in"
+            data-aos-delay="900"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="10"
+            data-name="Chapathi"
+            data-price="2.99"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/chapathi?updatedAt=1756144081085"
+              alt="Chapathi"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Chapathi</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Soft whole wheat flatbread.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$50</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Idli -->
+          <article data-aos="zoom-in"
+            data-aos-delay="1000"
+            class="bg-white rounded-2xl shadow overflow-hidden transform hover:-translate-y-1 transition"
+            data-id="11"
+            data-name="Idli"
+            data-price="3.49"
+          >
+            <img
+              class="w-full h-44 object-cover"
+              src="https://ik.imagekit.io/8maos45zi/Food%20store/idly?updatedAt=1756144081140"
+              alt="Idli"
+            />
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-800">Idli</h3>
+              <p class="mt-2 text-slate-500 text-sm">
+                Soft steamed rice cakes, light and fluffy.
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <div class="text-lg font-medium text-slate-800">$40</div>
+                <button
+                  class="addToCartBtn px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRESH HEALTHY -->
+    <section data-aos="fade-up"
+            data-aos-delay="100" id="freshhealthy" class="py-16 bg-white">
+      <div
+        class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+      >
+        <div>
+          <img
+            src="https://ik.imagekit.io/8maos45zi/Food%20store/healthy?updatedAt=1756144566718"
+            alt="fresh"
+            class="w-full rounded-2xl shadow"
+          />
+        </div>
+        <div>
+          <h2 class="text-3xl font-bold text-slate-800">
+            Fresh, Healthy & Organic
+          </h2>
+          <p class="text-slate-600 mt-4">
+            Say no to harmful chemicals. We source seasonal produce and cook to
+            preserve nutrients and flavor.
+          </p>
+          <div class="mt-6">
+            <button
+              class="px-5 py-3 rounded-lg bg-amber-500 text-white hover:bg-amber-600"
+            >
+              Watch Video
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT -->
+    <section data-aos="fade-out"
+            data-aos-delay="100" id="payment" class="py-16 bg-slate-50">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-slate-800">
+              Delivery & Payment
+            </h2>
+            <p class="text-slate-600 mt-4">
+              Multiple payment options, secure checkout, and live tracking on
+              every order.
+            </p>
+
+            <!-- extra attractive points -->
+            <ul
+              class="mt-4 space-y-2 text-slate-600 text-sm list-disc list-inside"
+            >
+              <li>✔️ Fast & reliable doorstep delivery</li>
+              <li>✔️ 100% secure online payment methods</li>
+              <li>✔️ Cash on Delivery available</li>
+              <li>✔️ Live order updates & real-time tracking</li>
+            </ul>
+
+            <div class="mt-6 flex gap-3">
+              <img
+                src="https://ik.imagekit.io/4z8covdo9/MERN-COURSE-ASSETS/FOOD-STORE/master-card-img.png"
+                class="w-12 h-12"
+                alt="card"
+              />
+              <img
+                src="https://ik.imagekit.io/4z8covdo9/MERN-COURSE-ASSETS/FOOD-STORE/visa-card-img.png"
+                class="w-12 h-12"
+                alt="card"
+              />
+              <img
+                src="https://ik.imagekit.io/4z8covdo9/MERN-COURSE-ASSETS/FOOD-STORE/paypal-card-img.png"
+                class="w-12 h-12"
+                alt="card"
+              />
+            </div>
+          </div>
+          <div>
+            <img
+              src="https://ik.imagekit.io/4z8covdo9/MERN-COURSE-ASSETS/FOOD-STORE/delivery-payment-section-img.png"
+              class="w-full rounded-2xl shadow"
+              alt="delivery"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REDEEM -->
+    <section data-aos="fade-down"
+            data-aos-delay="100" id="redeem" class="py-16 bg-amber-50">
+      <div
+        class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6 items-center"
+      >
+        <div class="md:col-span-2">
+          <h2 class="text-3xl font-bold text-slate-800">
+            Thank you — redeem your gift!
+          </h2>
+          <p class="text-slate-600 mt-2">
+            We appreciate you. Click redeem to claim your surprise offer.
+          </p>
+
+          <!-- attractive extras -->
+          <p class="text-slate-500 mt-2 text-sm">
+            🎁 Special discounts for loyal customers<br />🔥 Limited-time offers
+            updated weekly
+          </p>
+
+          <div class="mt-4">
+            <button
+              class="px-5 py-3 rounded-lg bg-amber-600 text-white hover:bg-amber-700"
+            >
+              Redeem Now
+            </button>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img
+            src="https://ik.imagekit.io/4z8covdo9/MERN-COURSE-ASSETS/FOOD-STORE/thanking-customers-section-img.png"
+            alt="gift"
+            class="w-48"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- FOLLOW AND FOOTER -->
+    <footer data-aos="fade-out"
+            data-aos-delay="100" class="bg-slate-900 text-slate-300 py-12">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <!-- SpiceHub logo -->
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/857/857681.png"
+          class="w-12 h-12 mx-auto mb-4"
+          alt="SpiceHub logo"
+        />
+
+        <!-- Tagline -->
+        <p class="text-amber-500 font-semibold mb-2">
+          Authentic South Indian Flavors
+        </p>
+
+        <!-- SpiceHub contact -->
+        <p>support@spicehub.com</p>
+        <p class="mt-1">123 Spice Street, Madurai, TamilNadu , India</p>
+
+        <!-- Social media links -->
+        <div class="flex justify-center gap-6 mt-4">
+          <a href="#" aria-label="Facebook">
+            <svg
+              class="w-6 h-6 text-slate-300 hover:text-amber-500 transition"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 3h-1.8v7A10 10 0 0 0 22 12"
+              ></path>
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg
+              class="w-6 h-6 text-slate-300 hover:text-amber-500 transition"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.8-.9a1.1 1.1 0 1 0 0-2.2 1.1 1.1 0 0 0 0 2.2z"
+              />
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg
+              class="w-6 h-6 text-slate-300 hover:text-amber-500 transition"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M22 5.8c-.8.3-1.6.5-2.5.6a4.3 4.3 0 0 0 1.9-2.4c-.8.5-1.8.9-2.7 1a4.3 4.3 0 0 0-7.3 3c0 .3 0 .7.1 1A12.2 12.2 0 0 1 3 4.8a4.3 4.3 0 0 0 1.3 5.8c-.7 0-1.3-.2-1.9-.5v.1c0 2.1 1.5 3.9 3.5 4.3a4.3 4.3 0 0 1-1.9.1 4.3 4.3 0 0 0 4 3 8.7 8.7 0 0 1-5.4 1.9c-.4 0-.7 0-1.1-.1a12.3 12.3 0 0 0 6.7 2c8 0 12.4-6.6 12.4-12.4v-.6c.8-.5 1.5-1.2 2-2z"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- SpiceHub copyright -->
+        <p class="mt-6 text-sm text-slate-500">
+          © <span id="year"></span> SpiceHub. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- CART SIDEBAR -->
+    <aside
+      id="cartPanel"
+      class="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform z-50"
+    >
+      <div class="p-6 h-full flex flex-col">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-semibold">Your Cart</h3>
+          <button id="closeCart" class="p-1 rounded-md hover:bg-slate-100">
+            <svg
+              class="w-5 h-5 text-slate-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <ul id="cartList" class="mt-6 space-y-4 overflow-auto flex-1"></ul>
+        <div class="mt-6 border-t pt-4">
+          <div class="flex items-center justify-between">
+            <span class="text-slate-600">Subtotal</span>
+            <strong id="cartSubtotal" class="text-lg">$0.00</strong>
+          </div>
+          <div class="mt-4 flex gap-3">
+            <button
+              id="checkout"
+              class="flex-1 px-4 py-2 rounded-lg bg-amber-600 text-white"
+            >
+              Checkout
+            </button>
+            <button id="clearCart" class="px-4 py-2 rounded-lg border">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CHECKOUT MODAL -->
+    <div
+      id="checkoutModal"
+      class="fixed inset-0 bg-black/50 hidden items-center justify-center z-60"
+    >
+      <div class="bg-white rounded-2xl p-6 w-full max-w-md">
+        <h4 class="text-xl font-bold">Checkout</h4>
+        <p class="text-slate-600 mt-2">
+          This is a demo checkout. Integrate payments for production.
+        </p>
+        <div class="mt-4">
+          <label class="block text-sm text-slate-600">Name</label>
+          <input
+            id="custName"
+            class="w-full mt-1 p-2 border rounded"
+            placeholder="Your name"
+          />
+          <label class="block text-sm text-slate-600 mt-3">Address</label>
+          <input
+            id="custAddress"
+            class="w-full mt-1 p-2 border rounded"
+            placeholder="Delivery address"
+          />
+        </div>
+        <div class="mt-6 flex justify-end gap-3">
+          <button id="cancelCheckout" class="px-4 py-2 rounded-lg border">
+            Cancel
+          </button>
+          <button
+            id="confirmCheckout"
+            class="px-4 py-2 rounded-lg bg-amber-600 text-white"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUNCTIONALITY  -->
+         <!-- AOS JS START-->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000, // Animation duration (ms)
+        easing: "ease-in-out", // Easing function
+        once: true, // Only animate once
+        mirror: false, // No repeat when scrolling back
+      });
+    </script>
+    <!-- AOS JS END -->
+
+
+
+
+    <script src="./script.js">
+     
+    </script>
+  </body>
+</html>
